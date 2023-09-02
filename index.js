@@ -2,14 +2,18 @@
 // index.js
 
 const inquirer = require("inquirer");
-const mysql = require("mysql2");
+const mysql = require("mysql2/promise");
 const consoleTable = require('console.table');
+const cli = require("./lib/cli");
+
+const { viewDepartments } = require("./department");
 
 // Create the database connection
 const connection = mysql.createConnection({
-  host: 'localhost',
+  host: '127.0.0.1',
   user: 'root',
-  password: 'rootroot',
+  password: '',
+  database: 'tracker_db',
 });
 
 connection.connect((err) => {
@@ -18,5 +22,14 @@ connection.connect((err) => {
   console.log('Connected to the database!');
 });
 
+cli(connection);
 
+process.on('exit', () => {
+  connection.end();
+})
 
+switch (action) {
+  case "View all departments":
+    viewDepartments(connection);
+    break;
+}
