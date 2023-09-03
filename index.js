@@ -1,6 +1,4 @@
 
-// index.js
-
 const inquirer = require("inquirer");
 const mysql = require("mysql2/promise");
 const consoleTable = require('console.table');
@@ -8,7 +6,6 @@ const cli = require("./lib/cli");
 
 const { viewDepartments } = require("./department");
 
-// Create the database connection
 const connection = mysql.createConnection({
   host: '127.0.0.1',
   user: 'root',

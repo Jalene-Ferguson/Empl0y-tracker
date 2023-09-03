@@ -8,5 +8,5 @@ async function viewDepartment(connection) {
     }
 }
 module.exports = {
-    viewDepartments,
+    viewDepartment,
 };
